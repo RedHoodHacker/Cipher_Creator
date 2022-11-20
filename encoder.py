@@ -61,9 +61,7 @@ menu = """1. Caesar
 
 print("""Welcome to Jurassic Park! oh wait that's not right buy hey,
 there's are some strange things here! Go ahead and choose one to test it out!""")
-time.sleep(5)
 print(menu)
-choice = int(input("Choose from 1 to 10: "))
 
 def Caesar_cipher(): # can only do ascii no digits, must check for that
     strings = input("What is the string you want to cipher from caesar: ")
@@ -85,43 +83,29 @@ def Caesar_cipher(): # can only do ascii no digits, must check for that
 
 
 
-#def Rot_13():
+def rot_13():
+    strings = input("Don't be rotten, use rot 13!: ")
 
-
-
-#def XOR_FF():
-    
-
-
-#def Affine():
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-choice_library = {
-    1 : Caesar_cipher()
-
-
-
-}
+    result = ""
+    for x in strings:
+        x = ord(x)
+        x += 13 
+        if x > 65 and x < 90:
+            x = x + 13
+            result += chr(x)
+        elif x > 32:
+            x = x - 26 
+            result += chr(x)
+        elif x > 97 and x < 122:
+            x = x + 13
+            result += chr(x)
+        elif x  > 97:
+            x = x - 26
+            result += chr(x)
+        else:
+            result += chr(x)
+    print(strings)
+    print(result)
 
 
 
@@ -129,5 +113,36 @@ choice_library = {
 
 
 
-def main(choice):
-    choice_library.get(choice)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+choice_library = {1:Caesar_cipher, 2:rot_13}
+
+
+
+
+
+
+
+while True:
+        choice = int(input("Choose from 1 to 10: "))
+        if choice == 0:
+            exit()
+        else:
+            choice_library[choice]()
+
